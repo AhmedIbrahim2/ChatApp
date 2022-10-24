@@ -14,6 +14,14 @@ public class Chat {
     private String chat_topic ;
     private String chat_password ;
 
+    public Message getMessage_chat() {
+        return message_chat;
+    }
+
+    public void setMessage_chat(Message message_chat) {
+        this.message_chat = message_chat;
+    }
+
     @OneToOne(mappedBy = "chat_Message")
     private Message message_chat ;
 
