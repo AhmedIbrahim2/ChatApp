@@ -39,11 +39,18 @@ public class UserService_Imp implements UserService {
 
 
     @Override
-    public User update(Long id , User user){
+    public User update(Long id , String password){
       User existinguser = userRepository.getById(id);
-        BeanUtils.copyProperties(user , existinguser , "user_id");
+        existinguser.setUser_password(password);
         return userRepository.save(existinguser);
 
+    }
+
+
+    public  User updateUser (Long id , User user){
+        User existinguser = userRepository.getById(id);
+        BeanUtils.copyProperties(user , existinguser , "user_id");
+        return userRepository.save(existinguser);
     }
 
 

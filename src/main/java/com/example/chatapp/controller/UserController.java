@@ -20,23 +20,21 @@
       public List<User> getall(){
 
        try {
-            userService.getAllUsers();
+           return   userService.getAllUsers();
 
        } catch (Exception e) {
            throw new RuntimeException(e);
        }
-       return userService.getAllUsers();
    }
 
    @GetMapping
    @RequestMapping("{id}")
    public Optional<User> get(@PathVariable Long id){
        try {
-           userService.getById(id);
+           return   userService.getById(id);
        } catch (Exception e) {
            throw new RuntimeException(e);
        }
-       return userService.getById(id);
    }
 
 
@@ -45,11 +43,10 @@
    public User create(@RequestBody final User user){
 
        try {
-           userService.create(user);
+           return   userService.create(user);
        } catch (Exception e) {
            throw new RuntimeException(e);
        }
-       return userService.create(user);
 
    }
 
@@ -67,14 +64,23 @@
 
 
   @RequestMapping(value = "{id}" , method = RequestMethod.PUT)
-  public User update (@PathVariable Long id ,@RequestBody User user){
+  public User update (@PathVariable Long id ,@RequestBody String password ){
        try {
-           userService.update(id , user);
+           return    userService.update(id , password);
        } catch (Exception e) {
            throw new RuntimeException(e);
        }
 
-     return userService.update(id , user);
+  }
+
+
+  @RequestMapping(value = "{id}", method = RequestMethod.PATCH)
+        public User updateUser (@PathVariable Long id , @RequestBody User user){
+       try {
+           return userService.updateUser(id , user);
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
   }
 
 
